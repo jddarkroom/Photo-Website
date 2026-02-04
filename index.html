@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Photographer Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 2.2rem; font-weight: 500; }
+    header p { color: #777; font-size: 0.95rem; margin-top: 0.5rem; }
+
+    nav {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #777;
+      text-decoration: none;
+    }
+    nav a:hover { color: #111; }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    /* About */
+    .about {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    /* Categories */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      font-size: 0.9rem;
+    }
+    .categories button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #777;
+    }
+    .categories button.active,
+    .categories button:hover { color: #111; }
+
+    /* Masonry Gallery */
+    .gallery {
+      column-count: 3;
+      column-gap: 1.5rem;
+    }
+    @media (max-width: 900px) { .gallery { column-count: 2; } }
+    @media (max-width: 600px) { .gallery { column-count: 1; } }
+
+    .gallery img {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+        .gallery img:hover { opacity: 0.85; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 90%; }
+
+    
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+      padding: 1rem;
+      opacity: 0.8;
+    }
+    .arrow:hover { opacity: 1; }
+    .arrow.left { left: 2rem; }
+    .arrow.right { right: 2rem; }
+
+    .lightbox-title {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: #ddd;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* Contact */
+    .contact-form {
+      max-width: 520px;
+      margin: auto;
+      display: grid;
+      gap: 1.2rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.7rem 0;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: #111; }
+
+    .contact-form button {
+      margin-top: 1rem;
+      padding: 0.7rem;
+      background: #111;
+      color: #fff;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>John Davin</h1>
+  <p>Photographer</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#gallery">Work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="about">
+    <p>
+      I am a retired amiture hobbyist photographer who enjoys bringing my camers for a walk.
+	  Photography offers a unique escape, a chance to disconnect from chaos and reconecct with your inner self.
+	  It’s a mindful practice that encourages you to be fully present in the moment. It encourages taking a slower, more observant approach to life, 
+	  as you frame a shot, adjusting your focus and composing the elements just right, the rest of the world fades into the background. 
+	  Your attention shifts to the details, the interplay of light and shadow, and the subtle nuances that make each scene come alive.
+	  This for me is the enjoyment I get from photography. I hop you enjoy these moments as well...
+    </p>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Selected Work</h2>
+
+  <div class="categories">
+    <button class="active" data-filter="all">All</button>
+    <button data-filter="monochrome">Monochrome</button>
+    <button data-filter="landscape">Landscape</button>
+    <button data-filter="street">Street</button>
+  </div>
+
+  <div class="gallery">
+    <img src="images/mono/M1.jpg" data-category="monochrome" />
+    <img src="images/landscape/L3.jpg" data-category="landscape"/>
+    <img src="images/street/S17.jpg" data-category="street"/>
+    <img src="images/landscape/L6.jpg" data-category="landscape"/>
+    <img src="images/mono/M13.jpg" data-category="monochrome" />
+    <img src="images/street/S8.jpg" data-category="street"/>
+	<img src="images/landscape/L8.jpg" data-category="landscape"/>
+	<img src="images/street/S6.jpg" data-category="street"/>
+	<img src="images/mono/M7.jpg" data-category="monochrome" />
+	<img src="images/landscape/L14.jpg" data-category="landscape"/>
+	<img src="images/street/S14.jpg" data-category="street"/>
+	<img src="images/mono/M4.jpg" data-category="monochrome" />
+	<img src="images/landscape/L10.jpg" data-category="landscape"/>
+	<img src="images/street/S2.jpg" data-category="street"/>
+	<img src="images/mono/M9.jpg" data-category="monochrome" />
+	<img src="images/landscape/L13.jpg" data-category="landscape"/>
+	<img src="images/street/S4.jpg" data-category="street"/>
+	<img src="images/mono/M15.jpg" data-category="monochrome" />
+	<img src="images/landscape/L7.jpg" data-category="landscape"/>
+	<img src="images/street/S11.jpg" data-category="street"/>
+	<img src="images/mono/M6.jpg" data-category="monochrome" />
+	<img src="images/mono/M2.jpg" data-category="monochrome" />
+	<img src="images/landscape/L1.jpg" data-category="landscape"/>
+	<img src="images/street/S16.jpg" data-category="street"/>
+	<img src="images/street/S1.jpg" data-category="street"/>
+	<img src="images/mono/M3.jpg" data-category="monochrome" />
+	<img src="images/street/S13.jpg" data-category="street"/>
+	<img src="images/landscape/L5.jpg" data-category="landscape"/>
+	<img src="images/street/S3.jpg" data-category="street"/>
+	<img src="images/mono/M5.jpg" data-category="monochrome" />
+	<img src="images/street/S5.jpg" data-category="street"/>
+	<img src="images/street/S7.jpg" data-category="street"/>
+	<img src="images/landscape/L11.jpg" data-category="landscape"/>
+	<img src="images/mono/M8.jpg" data-category="monochrome" />
+	<img src="images/street/S9.jpg" data-category="street"/>
+	<img src="images/street/S10.jpg" data-category="street"/>
+	<img src="images/landscape/L15.jpg" data-category="landscape"/>
+	<img src="images/mono/M10.jpg" data-category="monochrome" />
+	<img src="images/mono/M11.jpg" data-category="monochrome" />
+	<img src="images/street/S15.jpg" data-category="street"/>
+	<img src="images/landscape/L12.jpg" data-category="landscape"/>
+	<img src="images/mono/M12.jpg" data-category="monochrome" />
+	<img src="images/mono/M14.jpg" data-category="monochrome" />
+	<img src="images/street/S12.jpg" data-category="street"/>
+	<img src="images/mono/M17.jpg" data-category="monochrome" />
+	<img src="images/mono/M16.jpg" data-category="monochrome" />
+	<img src="images/mono/M18.jpg" data-category="monochrome" />
+	<img src="images/street/S18.jpg" data-category="street"/>
+	<img src="images/mono/M20.jpg" data-category="monochrome" />
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <form class="contact-form" action="https://formspree.io/f/meezygez" method="POST">
+    <input type="text" name="name" placeholder="Name" required />
+	<input type="email" name="email" placeholder="Email" required />
+	<textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<footer>© 2026 John Davin</footer>
+
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-title" id="lightboxTitle"></div>
+  <span class="arrow left" id="prev">‹</span>
+  <img />
+  <span class="arrow right" id="next">›</span>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let images = Array.from(document.querySelectorAll('.gallery img'));
+    let visibleImages = images.slice();
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const title = document.getElementById('lightboxTitle');
+    const nextBtn = document.getElementById('next');
+    const prevBtn = document.getElementById('prev');
+    const buttons = document.querySelectorAll('.categories button');
+
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const img = visibleImages[currentIndex];
+      if (!img) return;
+      lightboxImg.src = img.src;
+      title.textContent = img.dataset.title || '';
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox(e) {
+      if (e.target === lightbox) lightbox.classList.remove('active');
+    }
+
+    function next() {
+      if (!visibleImages.length) return;
+      currentIndex = (currentIndex + 1) % visibleImages.length;
+      openLightbox(currentIndex);
+    }
+
+    function prev() {
+      if (!visibleImages.length) return;
+      currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
+      openLightbox(currentIndex);
+    }
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        const index = visibleImages.indexOf(img);
+        openLightbox(index);
+      });
+    });
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+        visibleImages = [];
+
+        images.forEach(img => {
+          const category = img.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            img.style.display = '';
+            visibleImages.push(img);
+          } else {
+            img.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    lightbox.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+  });
+</script>
+
+</body>
+</html>
