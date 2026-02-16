@@ -60,11 +60,10 @@
     
 .gallery-links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: 1000px;
-  margin: auto;
-  text-align: center;
+  gap: 3rem;              /* more breathing room */
+  max-width: 1000px;      /* wider layout */
+  margin: 5rem auto;      /* more vertical presence */
+  padding: 0 2rem;
 }
 
 .gallery-links a {
@@ -74,15 +73,56 @@
 
 .gallery-links img {
   width: 100%;
-  border-radius: 4px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  height: auto;           /* keeps original proportions */
+  border-radius: 6px;
+  transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 .gallery-links img:hover {
-  opacity: 0.9;
   transform: scale(1.02);
+  opacity: 0.95;
 }
-    
+   
+.gallery-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+/* Overlay */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.overlay span {
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}   
 
     /* Contact */
     .contact-form {
@@ -146,21 +186,29 @@
   <h2>Selected Work</h2>
 
   <div class="gallery-links">
-    <a href="monochrome.html">
-      <img src="images/mono/M3.jpg" alt="Monochrome Gallery">
-      <p>Monochrome</p>
-    </a>
 
-    <a href="landscape.html">
-      <img src="images/landscape/L1.jpg" alt="Landscape Gallery">
-      <p>Landscape</p>
-    </a>
+  <a href="monochrome.html" class="gallery-item">
+    <img src="images/mono/M3.jpg" alt="Monochrome">
+    <div class="overlay">
+      <span>Monochrome</span>
+    </div>
+  </a>
 
-    <a href="street.html">
-      <img src="images/street/S3.jpg" alt="Street Gallery">
-      <p>Street</p>
-    </a>
-  </div>
+  <a href="landscape.html" class="gallery-item">
+    <img src="images/landscape/L1.jpg" alt="Landscape">
+    <div class="overlay">
+      <span>Landscape</span>
+    </div>
+  </a>
+
+  <a href="street.html" class="gallery-item">
+    <img src="images/street/S2.jpg" alt="Street">
+    <div class="overlay">
+      <span>Street</span>
+    </div>
+  </a>
+
+</div>
 </section>
 
 <section id="contact">
