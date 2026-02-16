@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Minalmist Photography Portfolio</title>
+  <title>Minimal Photographer Portfolio</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -54,80 +54,35 @@
     }
 
     /* Categories */
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-      font-size: 0.9rem;
-    }
-    .categories button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #777;
-    }
-    .categories button.active,
-    .categories button:hover { color: #111; }
+    
 
     /* Masonry Gallery */
-    .gallery {
-      column-count: 3;
-      column-gap: 1.5rem;
-    }
-    @media (max-width: 900px) { .gallery { column-count: 2; } }
-    @media (max-width: 600px) { .gallery { column-count: 1; } }
-
-    .gallery img {
-      width: 100%;
-      margin-bottom: 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-    }
-
-        .gallery img:hover { opacity: 0.85; }
-
-    /* Lightbox */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 90%; }
-
     
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.5rem;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-      padding: 1rem;
-      opacity: 0.8;
-    }
-    .arrow:hover { opacity: 1; }
-    .arrow.left { left: 2rem; }
-    .arrow.right { right: 2rem; }
+.gallery-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
 
-    .lightbox-title {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.85rem;
-      color: #ddd;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.85;
-    }
+.gallery-links a {
+  text-decoration: none;
+  color: #111;
+}
+
+.gallery-links img {
+  width: 100%;
+  border-radius: 4px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gallery-links img:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+    
 
     /* Contact */
     .contact-form {
@@ -171,11 +126,6 @@
 <header>
   <h1>John Davin</h1>
   <p>Photographer</p>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#gallery">Work</a>
-    <a href="#contact">Contact</a>
-  </nav>
 </header>
 
 <section id="about">
@@ -195,63 +145,21 @@
 <section id="gallery">
   <h2>Selected Work</h2>
 
-  <div class="categories">
-    <button class="active" data-filter="all">All</button>
-    <button data-filter="monochrome">Monochrome</button>
-    <button data-filter="landscape">Landscape</button>
-    <button data-filter="street">Street</button>
-  </div>
+  <div class="gallery-links">
+    <a href="monochrome.html">
+      <img src="images/mono/M3.jpg" alt="Monochrome Gallery">
+      <p>Monochrome</p>
+    </a>
 
-  <div class="gallery">
-    <img src="images/mono/M1.jpg" data-category="monochrome" />
-    <img src="images/landscape/L3.jpg" data-category="landscape"/>
-    <img src="images/street/S17.jpg" data-category="street"/>
-    <img src="images/landscape/L6.jpg" data-category="landscape"/>
-    <img src="images/mono/M13.jpg" data-category="monochrome" />
-    <img src="images/street/S8.jpg" data-category="street"/>
-	<img src="images/landscape/L8.jpg" data-category="landscape"/>
-	<img src="images/street/S6.jpg" data-category="street"/>
-	<img src="images/mono/M7.jpg" data-category="monochrome" />
-	<img src="images/landscape/L14.jpg" data-category="landscape"/>
-	<img src="images/street/S14.jpg" data-category="street"/>
-	<img src="images/mono/M4.jpg" data-category="monochrome" />
-	<img src="images/landscape/L10.jpg" data-category="landscape"/>
-	<img src="images/street/S2.jpg" data-category="street"/>
-	<img src="images/mono/M9.jpg" data-category="monochrome" />
-	<img src="images/landscape/L13.jpg" data-category="landscape"/>
-	<img src="images/street/S4.jpg" data-category="street"/>
-	<img src="images/mono/M15.jpg" data-category="monochrome" />
-	<img src="images/landscape/L7.jpg" data-category="landscape"/>
-	<img src="images/street/S11.jpg" data-category="street"/>
-	<img src="images/mono/M6.jpg" data-category="monochrome" />
-	<img src="images/mono/M2.jpg" data-category="monochrome" />
-	<img src="images/landscape/L1.jpg" data-category="landscape"/>
-	<img src="images/street/S16.jpg" data-category="street"/>
-	<img src="images/street/S1.jpg" data-category="street"/>
-	<img src="images/mono/M3.jpg" data-category="monochrome" />
-	<img src="images/street/S13.jpg" data-category="street"/>
-	<img src="images/landscape/L5.jpg" data-category="landscape"/>
-	<img src="images/street/S3.jpg" data-category="street"/>
-	<img src="images/mono/M5.jpg" data-category="monochrome" />
-	<img src="images/street/S5.jpg" data-category="street"/>
-	<img src="images/street/S7.jpg" data-category="street"/>
-	<img src="images/landscape/L11.jpg" data-category="landscape"/>
-	<img src="images/mono/M8.jpg" data-category="monochrome" />
-	<img src="images/street/S9.jpg" data-category="street"/>
-	<img src="images/street/S10.jpg" data-category="street"/>
-	<img src="images/landscape/L15.jpg" data-category="landscape"/>
-	<img src="images/mono/M10.jpg" data-category="monochrome" />
-	<img src="images/mono/M11.jpg" data-category="monochrome" />
-	<img src="images/street/S15.jpg" data-category="street"/>
-	<img src="images/landscape/L12.jpg" data-category="landscape"/>
-	<img src="images/mono/M12.jpg" data-category="monochrome" />
-	<img src="images/mono/M14.jpg" data-category="monochrome" />
-	<img src="images/street/S12.jpg" data-category="street"/>
-	<img src="images/mono/M17.jpg" data-category="monochrome" />
-	<img src="images/mono/M16.jpg" data-category="monochrome" />
-	<img src="images/mono/M18.jpg" data-category="monochrome" />
-	<img src="images/street/S18.jpg" data-category="street"/>
-	<img src="images/mono/M20.jpg" data-category="monochrome" />
+    <a href="landscape.html">
+      <img src="images/landscape/L1.jpg" alt="Landscape Gallery">
+      <p>Landscape</p>
+    </a>
+
+    <a href="street.html">
+      <img src="images/street/S3.jpg" alt="Street Gallery">
+      <p>Street</p>
+    </a>
   </div>
 </section>
 
@@ -276,75 +184,7 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    let images = Array.from(document.querySelectorAll('.gallery img'));
-    let visibleImages = images.slice();
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    const title = document.getElementById('lightboxTitle');
-    const nextBtn = document.getElementById('next');
-    const prevBtn = document.getElementById('prev');
-    const buttons = document.querySelectorAll('.categories button');
-
-    let currentIndex = 0;
-
-    function openLightbox(index) {
-      currentIndex = index;
-      const img = visibleImages[currentIndex];
-      if (!img) return;
-      lightboxImg.src = img.src;
-      title.textContent = img.dataset.title || '';
-      lightbox.classList.add('active');
-    }
-
-    function closeLightbox(e) {
-      if (e.target === lightbox) lightbox.classList.remove('active');
-    }
-
-    function next() {
-      if (!visibleImages.length) return;
-      currentIndex = (currentIndex + 1) % visibleImages.length;
-      openLightbox(currentIndex);
-    }
-
-    function prev() {
-      if (!visibleImages.length) return;
-      currentIndex = (currentIndex - 1 + visibleImages.length) % visibleImages.length;
-      openLightbox(currentIndex);
-    }
-
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        const index = visibleImages.indexOf(img);
-        openLightbox(index);
-      });
-    });
-
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-        visibleImages = [];
-
-        images.forEach(img => {
-          const category = img.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            img.style.display = '';
-            visibleImages.push(img);
-          } else {
-            img.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    lightbox.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', next);
-    prevBtn.addEventListener('click', prev);
-  });
+ 
 </script>
 
 </body>

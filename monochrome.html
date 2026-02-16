@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monochrome | John Davin</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 3rem 2rem 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    nav {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #777;
+    }
+
+    nav a:hover { color: #111; }
+
+    section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .gallery {
+      column-count: 3;
+      column-gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .gallery { column-count: 2; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery { column-count: 1; }
+    }
+
+    .gallery img {
+      width: 100%;
+      margin-bottom: 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery img:hover { opacity: 0.85; }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* Lightbox */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+	
+	.arrow {
+	  position: absolute;
+	  top: 50%;
+	  transform: translateY(-50%);
+	  font-size: 2.5rem;
+	  color: #fff;
+	  cursor: pointer;
+	  padding: 1rem;
+	  user-select: none;
+      opacity: 0.7;
+	  transition: opacity 0.3s ease;
+	}
+
+	.arrow:hover {
+	  opacity: 1;
+	}
+
+	.arrow.left {
+	  left: 2rem;
+	}
+
+	.arrow.right {
+	  right: 2rem;
+	}
+	
+    .close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Monochrome</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<section>
+  <div class="gallery">
+    <img src="images/mono/M1.jpg">
+    <img src="images/mono/M2.jpg">
+    <img src="images/mono/M3.jpg">
+    <img src="images/mono/M4.jpg">
+    <img src="images/mono/M5.jpg">
+    <img src="images/mono/M6.jpg">
+    <img src="images/mono/M7.jpg">
+    <img src="images/mono/M8.jpg">
+    <img src="images/mono/M9.jpg">
+    <img src="images/mono/M10.jpg">
+    <img src="images/mono/M11.jpg">
+    <img src="images/mono/M12.jpg">
+    <img src="images/mono/M13.jpg">
+    <img src="images/mono/M14.jpg">
+    <img src="images/mono/M15.jpg">
+    <img src="images/mono/M16.jpg">
+    <img src="images/mono/M17.jpg">
+    <img src="images/mono/M18.jpg">
+	<img src="images/mono/M19.jpg">
+    <img src="images/mono/M20.jpg">
+    <img src="images/mono/M20.jpg">
+  </div>
+</section>
+
+<footer>© 2026 John Davin</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" id="close">&times;</span>
+  <span class="arrow left" id="prev">&#10094;</span>
+  <img id="lightbox-img">
+  <span class="arrow right" id="next">&#10095;</span>
+</div>
+
+<script>
+  const images = Array.from(document.querySelectorAll('.gallery img'));
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('close');
+  const nextBtn = document.getElementById('next');
+  const prevBtn = document.getElementById('prev');
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    lightboxImg.src = images[currentIndex].src;
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => openLightbox(index));
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  nextBtn.addEventListener('click', showNext);
+  prevBtn.addEventListener('click', showPrev);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
