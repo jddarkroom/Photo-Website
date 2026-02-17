@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Photographer Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: 3.5rem; font-weight: 500; }
+    header p { color: #777; font-size: 0.95rem; margin-top: 0.5rem; }
+
+    nav {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #777;
+      text-decoration: none;
+    }
+    nav a:hover { color: #111; }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    /* About */
+    .about {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    /* Categories */
+    
+
+    /* Masonry Gallery */
+    
+.gallery-links {
+  display: grid;
+  gap: 3rem;              /* more breathing room */
+  max-width: 1000px;      /* wider layout */
+  margin: 5rem auto;      /* more vertical presence */
+  padding: 0 2rem;
+}
+
+.gallery-links a {
+  text-decoration: none;
+  color: #111;
+}
+
+.gallery-links img {
+  width: 100%;
+  height: auto;           /* keeps original proportions */
+  border-radius: 6px;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.gallery-links img:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+   
+.gallery-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.03);
+}
+
+/* Overlay */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.overlay span {
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}   
+
+    /* Contact */
+    .contact-form {
+      max-width: 520px;
+      margin: auto;
+      display: grid;
+      gap: 1.2rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.7rem 0;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: #111; }
+
+    .contact-form button {
+      margin-top: 1rem;
+      padding: 0.7rem;
+      background: #111;
+      color: #fff;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>John Davin</h1>
+  <p>Photographer</p>
+  <nav>
+    <a href="index.html">Home</a>
+	<a href="index.html#gallery">Work</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>About</h2>
+  <div class="about">
+    <p>
+      I am a retired armature hobbyist photographer who enjoys bringing my camera for a walk. 
+	  Photography offers a unique escape, a chance to disconnect from chaos and reconnect with your inner self. 
+	  It’s a mindful practice that encourages you to be fully present in the moment. It encourages taking a slower, 
+	  more observant approach to life, as you frame a shot, adjusting your focus and composing the elements just right, 
+	  the rest of the world fades into the background. Your attention shifts to the details, the interplay of light and shadow, 
+	  and the subtle nuances that make each scene come alive. 
+	  This for me is the enjoyment I get from photography. I hope you enjoy these moments as well...
+    </p>
+  </div>
+</section>
+
+
+</body>
+</html>
