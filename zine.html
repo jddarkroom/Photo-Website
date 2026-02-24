@@ -36,14 +36,21 @@ section {
   text-align: center;
 }
 
-.book-cover img {
+..book-cover img {
   width: 100%;
-  max-width: 250px; /* controls image size */
+  max-width: 350px;
   margin: 2rem auto 0;
   display: block;
   border-radius: 6px;
   cursor: pointer;
   transition: transform 0.4s ease;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  .book-cover img {
+    max-width: 260px;
+  }
 }
 
 .book-cover img:hover {
@@ -245,6 +252,7 @@ function handleSwipe() {
 </body>
 
 </html>
+
 
 
 
