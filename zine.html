@@ -206,6 +206,37 @@ lightbox.addEventListener("click", (e) => {
     lightbox.classList.remove("active");
   }
 });
+
+// --- SWIPE SUPPORT ---
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+lightbox.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+
+  // Minimum swipe distance (adjust if needed)
+  if (Math.abs(swipeDistance) > 50) {
+    if (swipeDistance > 0) {
+      // Swipe Right → Previous image
+      currentIndex = (currentIndex - 1 + slideshowImages.length) % slideshowImages.length;
+    } else {
+      // Swipe Left → Next image
+      currentIndex = (currentIndex + 1) % slideshowImages.length;
+    }
+    showImage(currentIndex);
+  }
+}
+
 </script>
 <footer>© 2026 John Davin</footer>
 
