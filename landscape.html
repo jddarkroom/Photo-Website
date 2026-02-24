@@ -240,16 +240,14 @@ lightbox.addEventListener("touchend", (e) => {
 function handleSwipe() {
   const swipeDistance = touchEndX - touchStartX;
 
-  // Minimum swipe distance (adjust if needed)
   if (Math.abs(swipeDistance) > 50) {
     if (swipeDistance > 0) {
-      // Swipe Right → Previous image
-      currentIndex = (currentIndex - 1 + slideshowImages.length) % slideshowImages.length;
+      // Swipe right → previous
+      showPrev();
     } else {
-      // Swipe Left → Next image
-      currentIndex = (currentIndex + 1) % slideshowImages.length;
+      // Swipe left → next
+      showNext();
     }
-    showImage(currentIndex);
   }
 }
 	
@@ -257,4 +255,5 @@ function handleSwipe() {
 
 </body>
 </html>
+
 
